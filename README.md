@@ -1,7 +1,7 @@
 ![candle](candle.gif)
 
 # What is this?
-This is tool to display candle on your terminal.<br>
+This is command to display candle on your terminal.<br>
 Terminal running this app must supporting 256 colors.<br>
 # How to use
 ## usage
