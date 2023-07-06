@@ -44,7 +44,7 @@ cd $GOPATH/src/github.com/y-hatano-github/candle
 ## 3rd step
 Run the code.
 ```
-go run candle.go
+go run main.go
 ```
 
 
