@@ -1,8 +1,8 @@
 ![candle](candle.gif)
 
 # What is this?
-This is command to display candle on your terminal.<br>
-Terminal running this app must supporting 256 colors.<br>
+This is command to display candle fire on your terminal.<br>
+Terminal running this command must supporting 256 colors.<br>
 # How to use
 ## usage
 ```
