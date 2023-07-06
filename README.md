@@ -25,7 +25,8 @@ candle 3
 ## key bindings
 [esc / CTRL+C] - exit<br>
 
-
+# Linux binary
+https://github.com/y-hatano-github/candle/releases
 
 # How to get and run the code.
 ## build version
