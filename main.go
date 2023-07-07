@@ -10,7 +10,7 @@ import (
 	"github.com/alexflint/go-arg"
 	"github.com/charmbracelet/bubbles/timer"
 	tea "github.com/charmbracelet/bubbletea"
-	goTerminal "github.com/leandroveronezi/go-terminal"
+
 	"github.com/muesli/termenv"
 )
 
@@ -35,7 +35,7 @@ func main() {
 		log.Fatal(err)
 	}
 
-	goTerminal.CursorUp(HEIGHT + 1)
+	termenv.CursorPrevLine(WIDTH + 1)
 }
 
 type model struct {

@@ -6,7 +6,6 @@ require (
 	github.com/alexflint/go-arg v1.4.3
 	github.com/charmbracelet/bubbles v0.16.1
 	github.com/charmbracelet/bubbletea v0.24.2
-	github.com/leandroveronezi/go-terminal v1.3.3
 	github.com/muesli/termenv v0.15.2
 )
 
