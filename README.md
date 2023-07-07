@@ -1,7 +1,7 @@
 ![candle](candle.gif)
 
 # What is this?
-This is command to display candle fire on your terminal.<br>
+This is Joke command to display candle fire on your terminal.<br>
 Terminal running this command must supporting 256 colors.<br>
 # How to use
 ## usage
@@ -25,7 +25,8 @@ candle 3
 ## key bindings
 [esc / CTRL+C] - exit<br>
 
-
+# Linux binary
+https://github.com/y-hatano-github/candle/releases
 
 # How to get and run the code.
 ## build version
@@ -43,7 +44,7 @@ cd $GOPATH/src/github.com/y-hatano-github/candle
 ## 3rd step
 Run the code.
 ```
-go run candle.go
+go run main.go
 ```
 
 
