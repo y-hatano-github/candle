@@ -25,7 +25,7 @@ candle 3
 ## key bindings
 [esc / CTRL+C] - exit<br>
 
-# Linux binary
+# Win/Mac/Linux binary
 https://github.com/y-hatano-github/candle/releases
 
 # How to get and run the code.
@@ -46,7 +46,3 @@ Run the code.
 ```
 go run main.go
 ```
-
-
-
-
