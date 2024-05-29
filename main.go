@@ -29,13 +29,13 @@ func main() {
 	}
 	arg.MustParse(&args)
 
-	rand.Seed(time.Now().UnixNano())
-	p := tea.NewProgram(initialModel(args.DurationTime))
+	m := initialModel(args.DurationTime)
+	p := tea.NewProgram(m)
 	if _, err := p.Run(); err != nil {
 		log.Fatal(err)
 	}
 
-	termenv.CursorPrevLine(WIDTH + 1)
+	m.o.CursorPrevLine(WIDTH + 1)
 }
 
 type model struct {
@@ -47,6 +47,7 @@ type model struct {
 	c     []string
 	dt    int64
 	o     *termenv.Output
+	r     *rand.Rand
 }
 
 func initialModel(d int64) model {
@@ -80,6 +81,7 @@ func initialModel(d int64) model {
 			"231"},
 		o:  output,
 		dt: d,
+		r:  rand.New(rand.NewSource(time.Now().UnixNano())),
 	}
 }
 
@@ -109,7 +111,7 @@ func (m model) Fire() {
 					m.v[x][y] = m.v[x][y] / 5
 				}
 			}
-			if rand.Intn(FLUCTUATION) == 1 {
+			if m.r.Intn(FLUCTUATION) == 1 {
 				m.v[x][y] = m.v[x][y] - 1
 			}
 			if m.v[x][y] < 0 {
@@ -122,14 +124,14 @@ func (m model) Fire() {
 		if sub > m.dt*1000-500 {
 			m.v[x][HEIGHT-1] = 0
 		} else {
-			m.v[x][HEIGHT-1] = rand.Intn(3) + len(m.c) - 3
+			m.v[x][HEIGHT-1] = m.r.Intn(3) + len(m.c) - 3
 		}
 	}
 	for x := 4; x < WIDTH-4; x++ {
 		if sub > m.dt*1000-500 {
 			m.v[x][HEIGHT-2] = 0
 		} else {
-			m.v[x][HEIGHT-2] = rand.Intn(3) + len(m.c) - 3
+			m.v[x][HEIGHT-2] = m.r.Intn(3) + len(m.c) - 3
 		}
 	}
 }
