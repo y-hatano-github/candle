@@ -60,6 +60,7 @@ func initialModel(d int64) model {
 	}
 
 	output := termenv.NewOutput(os.Stdout)
+	bgc := output.BackgroundColor()
 
 	return model{
 		timer: tm,
@@ -68,7 +69,7 @@ func initialModel(d int64) model {
 		cnt:   0,
 		v:     &v,
 		c: []string{
-			"0",
+			bgc.Sequence(true),
 			"197",
 			"203",
 			"209",
