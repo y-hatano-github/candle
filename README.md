@@ -13,12 +13,12 @@ Requires a terminal with 256-color support.
 
 # 💾 Download
 👉 Get the latest release here:
-https://github.com/y-hatano-github/candle/releases/latest
+https://github.com/yoshihicode/candle/releases/latest
 
 # Quick start
 ## 🐧 Linux
 ```bash
-wget https://github.com/y-hatano-github/candle/releases/latest/download/candle_linux_amd64.tar.gz
+wget https://github.com/yoshihicode/candle/releases/latest/download/candle_linux_amd64.tar.gz
 tar -xzvf candle_linux_amd64.tar.gz
 mv candle /usr/local/bin/
 candle
@@ -26,7 +26,7 @@ candle
 
 ## 🍎 macOS
 ```bash
-curl -LO https://github.com/y-hatano-github/candle/releases/latest/download/candle_darwin_amd64.tar.gz
+curl -LO https://github.com/yoshihicode/candle/releases/latest/download/candle_darwin_amd64.tar.gz
 tar -xzvf candle_darwin_amd64.tar.gz
 sudo mv candle /usr/local/bin/
 candle
@@ -34,7 +34,7 @@ candle
 
 ## 🪟 Windows
 ```powershell
-Invoke-WebRequest -OutFile candle_windows_amd64.tar.gz https://github.com/y-hatano-github/candle/releases/latest/download/candle_windows_amd64.tar.gz
+Invoke-WebRequest -OutFile candle_windows_amd64.tar.gz https://github.com/yoshihicode/candle/releases/latest/download/candle_windows_amd64.tar.gz
 tar -xzvf  candle_windows_amd64.tar.gz
 .\candle.exe
 ```
@@ -50,7 +50,7 @@ Options:
   --help, -h             display this help and exit
 ```
 
-Example: display the candle flame for three seconds   
+Example: display the candle flame for three seconds  
 ```
 candle 3
 ```
