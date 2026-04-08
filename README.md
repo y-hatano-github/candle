@@ -15,20 +15,23 @@ Requires a terminal with 256-color support.
 👉 Get the latest release here:
 https://github.com/yoshihicode/candle/releases/latest
 
-# Quick start
+# 📦 Installation
 ## 🐧 Linux
 ```bash
 wget https://github.com/yoshihicode/candle/releases/latest/download/candle_linux_amd64.tar.gz
 tar -xzvf candle_linux_amd64.tar.gz
 mv candle /usr/local/bin/
+
+#Run
 candle
 ```
 
-## 🍎 macOS
+## 🍎🍺 macOS / Homebrew
 ```bash
-curl -LO https://github.com/yoshihicode/candle/releases/latest/download/candle_darwin_amd64.tar.gz
-tar -xzvf candle_darwin_amd64.tar.gz
-sudo mv candle /usr/local/bin/
+brew install yoshihicode/tap/candle
+candle
+
+# Run
 candle
 ```
 
@@ -36,6 +39,8 @@ candle
 ```powershell
 Invoke-WebRequest -OutFile candle_windows_amd64.tar.gz https://github.com/yoshihicode/candle/releases/latest/download/candle_windows_amd64.tar.gz
 tar -xzvf  candle_windows_amd64.tar.gz
+
+# Run
 .\candle.exe
 ```
 

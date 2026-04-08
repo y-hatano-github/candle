@@ -25,3 +25,16 @@ archives:
   - name_template: "{{ .ProjectName }}_{{ .Os }}_{{ .Arch }}"
 release:
   prerelease: auto
+brews:
+  - name: cubectl
+    repository:
+      owner: yoshihicode
+      name: homebrew-tap
+    directory: Formula
+    homepage: "https://github.com/yoshihicode/cubectl"
+    description: "cubectl controls cube instead of Kubernetes clusters."
+    license: "MIT"
+    test: |
+      system "#{bin}/candle --help"
+    install: |
+      bin.install "candle"
