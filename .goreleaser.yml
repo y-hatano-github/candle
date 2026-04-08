@@ -26,13 +26,13 @@ archives:
 release:
   prerelease: auto
 brews:
-  - name: cubectl
+  - name: candle
     repository:
       owner: yoshihicode
       name: homebrew-tap
     directory: Formula
-    homepage: "https://github.com/yoshihicode/cubectl"
-    description: "cubectl controls cube instead of Kubernetes clusters."
+    homepage: "https://github.com/yoshihicode/candle"
+    description: "candle is a joke command that displays a candle-like fire effect in your terminal."
     license: "MIT"
     test: |
       system "#{bin}/candle --help"
