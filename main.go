@@ -25,7 +25,7 @@ const FLUCTUATION = 5
 
 func main() {
 	var args struct {
-		DurationTime int64 `arg:"positional" help:"[Optional]duration time" default:"5"`
+		DurationTime int64 `arg:"positional" help:"Duration in seconds (default: 0).\n                         0 keeps the fire burning indefinitely." default:"0"`
 	}
 	arg.MustParse(&args)
 
@@ -39,19 +39,25 @@ func main() {
 }
 
 type model struct {
-	timer timer.Model
-	st    time.Time
-	err   error
-	cnt   int
-	v     *[WIDTH][HEIGHT]int
-	c     []string
-	dt    int64
-	o     *termenv.Output
-	r     *rand.Rand
+	timer     timer.Model
+	st        time.Time
+	err       error
+	cnt       int
+	v         *[WIDTH][HEIGHT]int
+	c         []string
+	dt        int64
+	o         *termenv.Output
+	r         *rand.Rand
+	isLasting bool
 }
 
 func initialModel(d int64) model {
-	tm := timer.NewWithInterval(time.Duration(d)*time.Second, 50*time.Millisecond)
+	isLasting := d <= 0
+	var tm timer.Model
+	if !isLasting {
+		tm = timer.NewWithInterval(time.Duration(d)*time.Second, 50*time.Millisecond)
+	}
+
 	var v [WIDTH][HEIGHT]int
 	for y := 0; y < HEIGHT; y++ {
 		for x := 0; x < WIDTH; x++ {
@@ -80,9 +86,10 @@ func initialModel(d int64) model {
 			"229",
 			"230",
 			"231"},
-		o:  output,
-		dt: d,
-		r:  rand.New(rand.NewSource(time.Now().UnixNano())),
+		o:         output,
+		dt:        d,
+		r:         rand.New(rand.NewSource(time.Now().UnixNano())),
+		isLasting: isLasting,
 	}
 }
 
@@ -122,14 +129,14 @@ func (m model) Fire() {
 	}
 
 	for x := 5; x < WIDTH-5; x++ {
-		if sub > m.dt*1000-500 {
+		if !m.isLasting && sub > m.dt*1000-500 {
 			m.v[x][HEIGHT-1] = 0
 		} else {
 			m.v[x][HEIGHT-1] = m.r.Intn(3) + len(m.c) - 3
 		}
 	}
 	for x := 4; x < WIDTH-4; x++ {
-		if sub > m.dt*1000-500 {
+		if !m.isLasting && sub > m.dt*1000-500 {
 			m.v[x][HEIGHT-2] = 0
 		} else {
 			m.v[x][HEIGHT-2] = m.r.Intn(3) + len(m.c) - 3
@@ -138,6 +145,11 @@ func (m model) Fire() {
 }
 
 func (m model) Init() tea.Cmd {
+	if m.isLasting {
+		return tea.Tick(50*time.Millisecond, func(t time.Time) tea.Msg {
+			return t
+		})
+	}
 	return m.timer.Init()
 }
 
@@ -149,10 +161,22 @@ func (m model) Update(msg tea.Msg) (tea.Model, tea.Cmd) {
 		switch msg.Type {
 		case tea.KeyCtrlC, tea.KeyEsc:
 			m.st = m.st.Add(-5 * time.Second)
+			m.dt = 1
+			if m.isLasting {
+				m.isLasting = false
+				m.timer = timer.NewWithInterval(time.Duration(m.dt)*time.Second, 50*time.Millisecond)
+				return m, m.timer.Init()
+			}
 			return m, cmd
 		}
-	case timer.StartStopMsg:
-	case timer.TickMsg:
+	case time.Time: // lasting
+		if m.isLasting {
+			m.Fire()
+			return m, tea.Tick(50*time.Millisecond, func(t time.Time) tea.Msg {
+				return t
+			})
+		}
+	case timer.TickMsg: // timer
 		m.cnt = m.cnt + 1
 		m.timer, cmd = m.timer.Update(msg)
 		m.Fire()
