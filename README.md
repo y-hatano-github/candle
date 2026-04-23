@@ -46,10 +46,11 @@ tar -xzvf  candle_windows_amd64.tar.gz
 
 ## 📘 Usage
 ```
-Usage: candle [DURATIONTIME]
+Usage: main [DURATIONTIME]
 
 Positional arguments:
-  DURATIONTIME           [Optional]duration time
+  DURATIONTIME           Duration in seconds (default: 0).
+                         0 keeps the fire burning indefinitely.
 
 Options:
   --help, -h             display this help and exit
