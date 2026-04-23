@@ -29,8 +29,7 @@ candle
 ### 🍎🍺 macOS / Homebrew
 ```bash
 brew tap yoshihicode/tap
-brew install yoshihicode/tap/candle
-candle
+brew install candle
 
 # Run
 candle
